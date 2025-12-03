@@ -1,96 +1,165 @@
-/* ======= ESTILO GERAL ======= */
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 30px;
-    background: #f4f4f4;
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --background-color: #f8f9fa;
+    --text-color: #343a40;
+    --secondary-text-color: #6c757d;
+    --border-color: #ced4da;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius-default: 8px;
 }
 
-/* ======= TÍTULOS ======= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
 h1 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #222;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 2.2em;
+    font-weight: 600;
 }
 
 h2 {
-    margin-top: 40px;
-    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
 }
 
-/* ======= CARD DO FORMULÁRIO ======= */
-.container {
-    max-width: 500px;
+.container,
+.lista-container {
+    max-width: 550px;
     margin: 0 auto;
     background: #ffffff;
-    padding: 20px 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: var(--radius-default);
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease-in-out;
 }
 
-/* ======= CAMPOS ======= */
+.container:hover,
+.lista-container:hover {
+    transform: translateY(-2px);
+}
+
 .container div {
-    margin: 15px 0;
+    margin: 18px 0;
     display: flex;
     flex-direction: column;
 }
 
-
 label {
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--secondary-text-color);
 }
 
 input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-default);
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
 }
 
-/* ======= BOTÕES ======= */
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
 button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
-    margin-right: 5px;
-    font-size: 14px;
+    border-radius: var(--radius-default);
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
     color: #fff;
-    transition: 0.2s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.1s;
+    text-transform: uppercase;
 }
 
-/* CORES DOS BOTÕES */
+button:active {
+    transform: scale(0.98);
+}
+
 .salvar { background: #28a745; }
 .salvar:hover { background: #218838; }
 
-.atualizar { background: #007bff; }
-.atualizar:hover { background: #0069d9; }
+.atualizar { background: var(--primary-color); }
+.atualizar:hover { background: var(--primary-hover); }
 
 .deletar { background: #dc3545; }
 .deletar:hover { background: #c82333; }
 
-.consultar { background: #6c757d; }
-.consultar:hover { background: #5a6268; }
+.consultar { background: #ffc107; color: var(--text-color); }
+.consultar:hover { background: #e0a800; }
 
-.limparCampos { background: #000; }
-.limparCampos:hover { background: #333; }
+.limparCampos { background: var(--secondary-text-color); }
+.limparCampos:hover { background: #5a6268; }
 
-/* ======= LISTAGEM ======= */
+.botoes button {
+    flex: 1;
+    min-width: 140px;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.lista-container {
+    max-width: 400px;
+}
+
+.lista-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: none;
+}
+
 #lista-produtos {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 15px;
+    background: #ffffff;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 0;
+    list-style: none;
 }
 
 #lista-produtos li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    font-size: 15px;
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 1em;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+#lista-produtos li:hover {
+    background-color: #f8f8f8;
 }
 
 #lista-produtos li:last-child {
@@ -98,41 +167,11 @@ button {
 }
 
 #total-produtos {
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #444;
-}
-
-.layout {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    align-items: flex-start;
-    margin-top: 20px;
-}
-
-.lista-container {
-    max-width: 450px;
-    width: 100%;
-    background: #ffffff;
-    padding: 20px 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.lista-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.botoes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.botoes button {
-    flex: 1;
-    min-width: 120px;
+    text-align: right;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
 }
